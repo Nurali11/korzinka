@@ -10,22 +10,25 @@ let create_btn = document.querySelector("#add_btn")
 create_btn.addEventListener("click", createItem)
 
 function createItem() {
-    const newItem = {
-        name: iname.value,
-        color: icolor.value,
-        price: iprice.value,
-        image: iimage.value
-    };
-
-    api.post("/uzum", newItem)
-        .then(response => {
-            let e = response.data;
-                iname.value = ""
-                icolor.value = ""
-                iprice.value = ""
-                iimage.value = "" 
-                alert("Malumotlar muvaffaqiyatli yuklandi")
-                console.log(JSON.stringify(e));
-                
-                   })
+    if(iname.value != ""){
+        const newItem = {
+            name: iname.value,
+            color: icolor.value,
+            price: iprice.value,
+            image: iimage.value
+        };
+    
+        api.post("/uzum", newItem)
+            .then(response => {
+                let e = response.data;
+                    iname.value = ""
+                    icolor.value = ""
+                    iprice.value = ""
+                    iimage.value = "" 
+                    alert("Malumotlar muvaffaqiyatli yuklandi")
+                    
+                       })
+                    }else{
+                        alert("malumotlarni toliq toldiring va qayta urining")
+                    }            
 }
