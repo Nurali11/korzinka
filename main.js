@@ -1,45 +1,41 @@
 const api = axios.create({
-    baseURL: 'https://679a13aa747b09cdcccd946d.mockapi.io/products/'
+    baseURL: 'https://679a1360747b09cdcccd9307.mockapi.io'
 });
-let root = document.querySelector()
-function show() {
-    api.get("/uzum").then((a) =>  {
-        console.log(a.data);
-        })
+
+function show(arr){
+    let root = document.querySelector('.products')
+    arr.forEach(e => {
+        root.insertAdjacentHTML('beforeend', `
+            <div class="card">
+                <h1>Name: ${e.name}</h1>
+                <h3>Price: $${e.price}</h3>
+                <h3>Color: ${e.color}</h3>
+                <img src="${e.image}">
+                <button class="delete" onclick="deletedata(${e.id})">❌ Delete</button>
+                <button class="qoshish" onclick="add(${e.id}, this)">➕ Savatga solish</button>
+            </div>`)
+});   
 }
 
-function addProduct(){
-    api.post
-}
-function createItem() {
-    const newItem = {
-        name: iname.value,
-        color: icolor.value,
-        price: iprice.value,
-        image: iimage.value
-    };
+api.get('/uzum').then((res) => show(res.data))
 
-    api.post("/uzum", newItem)
-        .then(response => {
-            let e = response.data;
-            root.insertAdjacentHTML("beforeend", `
-                <div class="element" data-id="${e.id}">
-                    <h1>${e.title}</h1>
-                    <p>${e.category}</p>
-                    <p>${e.price}$</p>
-                    <img src="${e.image}" ">
-                    <div class="btns">
-                        <button onClick="deleteItem(${e.id})" id="delet">delete</button>
-                        <button onClick="basket(${e.id})" id="karzina"><i class="fa-solid fa-cart-shopping"></i></button>
-                    </div>
-                </div>`);
-                iname.value = ""
-                irang.value = ""
-                inarx.value = ""
-                irasm.value = "" 
-                   })
+function deletedata(id){
+    api.delete(`/uzum/${id}`).then(res => location.reload())
 }
 
+function add(id, button){
+    let arr = JSON.parse(localStorage.getItem('korzinka')) || []
 
-
-show()
+    if(Array.isArray(arr) && !arr.includes(id)){
+        arr.push(id)
+        localStorage.setItem('korzinka', JSON.stringify(arr))
+        button.classList.add('qoshildi')
+        button.classList.remove('qoshish')
+    }else if(arr.includes(id)){
+        arr.splice(arr.indexOf(id), 1)
+        localStorage.setItem('korzinka', JSON.stringify(arr))
+        button.classList.remove('qoshildi')
+        button.classList.add('qoshish')
+    }
+    console.log(arr);
+}
