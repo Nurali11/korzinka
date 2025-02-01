@@ -1,5 +1,5 @@
 const api = axios.create({
-    baseURL: 'https://679a13aa747b09cdcccd946d.mockapi.io/products/'
+    baseURL: 'https://679a1360747b09cdcccd9307.mockapi.io'
 });
 let iname = document.querySelector("#name")
 let icolor = document.querySelector("#color")

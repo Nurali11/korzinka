@@ -3,34 +3,46 @@
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
     padding: 10px;
     font-size: 30px;
 
 }
-body{
+
+body {
     background: radial-gradient(circle, rgb(112, 90, 211), rgb(36, 31, 99));
 
 }
-.nav a{
+
+.nav {
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+
+.nav a {
     margin: 40px;
 }
-.inputs input{
+
+.inputs input {
+    padding: 5px;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     height: 40px;
 }
-.inputs{
+
+.inputs {
     margin-top: 100px;
-    margin-left: 600px ;
+    margin-left: 600px;
     display: flex;
     flex-direction: column;
     max-width: 30%;
     gap: 20px;
 }
-.inputs button{
+
+.inputs button {
     justify-content: center;
     margin-left: 200px;
     border-radius: 10px;
@@ -38,12 +50,12 @@ body{
     height: 30px;
 }
 
-#add_btn:hover{
+#add_btn:hover {
     background-color: rgb(198, 232, 125);
     transform: scale(1.2);
-    transition: background-color 0.5s , transform 0.5s;
+    transition: background-color 0.5s, transform 0.5s;
 }
 
-.inputs input:hover{
+.inputs input:hover {
     background-color: rgb(199, 214, 255);
 }
